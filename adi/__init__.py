@@ -37,7 +37,8 @@ from adi.ad9166 import ad9166
 from adi.ad9172 import ad9172
 from adi.ad9250 import ad9250
 from adi.ad9265 import ad9265
-from adi.ad9371 import ad9371
+from adi.ad9371 import ad9371, ad9375
+from adi.ad9371 import ad9375
 from adi.ad9434 import ad9434
 from adi.ad9467 import ad9467
 from adi.ad9625 import ad9625
