@@ -691,5 +691,6 @@ class ad9375(ad9371):
             return self._get_iio_attr("voltage1", "vswr_track_count", True)
         return
     
-    ''' device-specific attributes'''
+
+    
     
