@@ -323,3 +323,373 @@ class ad9371(rx_tx, context_manager, sync_start):
     @property
     def jesd204_statuses(self):
         return self._jesd.get_all_statuses()
+
+# Added class
+class ad9375(ad9371):
+    """ AD9375 Transceiver """
+
+    '''voltage1: (output)'''
+    # CLGC tracking
+    @property
+    def tx_clgc_tracking_en_chan0(self):
+        return self._get_iio_attr("voltage0", "clgc_tracking_en", True)
+    
+    @tx_clgc_tracking_en_chan0.setter
+    def tx_clgc_tracking_en_chan0(self, value):
+        self._set_iio_attr("voltage0", "clgc_tracking_en", True, value)
+
+    @property
+    def tx_clgc_tracking_en_chan1(self):
+        return self._get_iio_attr("voltage1", "clgc_tracking_en", True)
+    
+    @tx_clgc_tracking_en_chan1.setter
+    def tx_clgc_tracking_en_chan1(self, value):
+        self._set_iio_attr("voltage1", "clgc_tracking_en", True, value)
+
+    # CLGC current gain
+    @property
+    def tx_clgc_current_gain_chan0(self):
+        if self.tx_clgc_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "clgc_current_gain", True)
+        return 
+
+    @property
+    def tx_clgc_current_gain_chan1(self):
+        if self.tx_clgc_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "clgc_current_gain", True)
+        return
+    
+    # CLGC desired gain
+    @property
+    def tx_clgc_desired_gain_chan0(self):
+        return self._get_iio_attr("voltage0", "clgc_desired_gain", True)
+    
+    @tx_clgc_desired_gain_chan0.setter
+    def tx_clgc_desired_gain_chan0(self, value):
+        self._set_iio_attr("voltage0", "clgc_desired_gain", True, value)
+
+    @property
+    def tx_clgc_desired_gain_chan1(self):
+        return self._get_iio_attr("voltage1", "clgc_desired_gain", True)
+    
+    @tx_clgc_desired_gain_chan1.setter
+    def tx_clgc_desired_gain_chan1(self, value):
+        self._set_iio_attr("voltage1", "clgc_desired_gain", True, value)
+    
+    # CLGC orx rms
+    @property
+    def tx_clgc_orx_rms_chan0(self):
+        if self.tx_clgc_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "clgc_orx_rms", True)
+        return
+
+    @property
+    def tx_clgc_orx_rms_chan1(self):
+        if self.tx_clgc_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "clgc_orx_rms", True)
+        return
+    
+    # CLGC track count
+    @property
+    def tx_clgc_track_count_chan0(self):
+        if self.tx_clgc_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "clgc_track_count", True)
+        return
+
+    @property
+    def tx_clgc_track_count_chan1(self):
+        if self.tx_clgc_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "clgc_track_count", True)
+        return
+    
+    # CLGC tx gain
+    @property
+    def tx_clgc_tx_gain_chan0(self):
+        if self.tx_clgc_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "clgc_tx_gain", True)
+        return
+
+    @property
+    def tx_clgc_tx_gain_chan1(self):
+        if self.tx_clgc_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "clgc_tx_gain", True)
+        return
+    
+    # CLGC tx rms
+    @property
+    def tx_clgc_tx_rms_chan0(self):
+        if self.tx_clgc_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "clgc_tx_rms", True)
+        return
+
+    @property
+    def tx_clgc_tx_rms_chan1(self):
+        if self.tx_clgc_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "clgc_tx_rms", True)
+        return
+    
+    # DPD actuator 
+    @property
+    def tx_dpd_actuator_en_chan0(self):
+        return self._get_iio_attr("voltage0", "dpd_actuator_en", True)
+    
+    @tx_dpd_actuator_en_chan0.setter
+    def tx_dpd_actuator_en_chan0(self, value):
+        self._set_iio_attr("voltage0", "dpd_actuator_en", True, value)
+
+    @property
+    def tx_dpd_actuator_en_chan1(self):
+        return self._get_iio_attr("voltage1", "dpd_actuator_en", True)
+    
+    @tx_dpd_actuator_en_chan1.setter
+    def tx_dpd_actuator_en_chan1(self, value):
+        self._set_iio_attr("voltage1", "dpd_actuator_en", True, value)
+
+    # DPD tracking
+    @property
+    def tx_dpd_tracking_en_chan0(self):
+        return self._get_iio_attr("voltage0", "dpd_tracking_en", True)
+    
+    @tx_dpd_tracking_en_chan0.setter
+    def tx_dpd_tracking_en_chan0(self, value):
+        self._set_iio_attr("voltage0", "dpd_tracking_en", True, value)
+
+    @property
+    def tx_dpd_tracking_en_chan1(self):
+        return self._get_iio_attr("voltage1", "dpd_tracking_en", True)
+    
+    @tx_dpd_tracking_en_chan1.setter
+    def tx_dpd_tracking_en_chan1(self, value):
+        self._set_iio_attr("voltage1", "dpd_tracking_en", True, value)
+    
+    # DPD external path delay
+    @property
+    def tx_dpd_external_path_delay_chan0(self):
+        if self.tx_dpd_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "dpd_external_path_delay", True)
+        return
+    
+    @property
+    def tx_dpd_external_path_delay_chan1(self):
+        if self.tx_dpd_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "dpd_external_path_delay", True)
+        return
+    
+    # DPD model_error
+    @property
+    def tx_dpd_model_error_chan0(self):
+        if self.tx_dpd_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "dpd_model_error", True)
+        return
+    
+    @property
+    def tx_dpd_model_error_chan1(self):
+        if self.tx_dpd_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "dpd_model_error", True)
+        return
+    
+    # DPD reset (button)***
+    @property
+    def tx_dpd_reset_en_chan0(self):
+        return self._get_iio_attr("voltage0", "dpd_reset_en", True)
+    
+    @tx_dpd_reset_en_chan0.setter
+    def tx_dpd_reset_en_chan0(self, value):
+        self._set_iio_attr("voltage0", "dpd_reset_en", True, value)
+
+    @property
+    def tx_dpd_reset_en_chan1(self):
+        return self._get_iio_attr("voltage1", "dpd_reset_en", True)
+    
+    @tx_dpd_reset_en_chan1.setter
+    def tx_dpd_reset_en_chan1(self, value):
+        self._set_iio_attr("voltage1", "dpd_reset_en", True, value)
+
+    # DPD status
+    @property
+    def tx_dpd_status_chan0(self):
+        if self.tx_dpd_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "dpd_status", True)
+        return
+    
+    @property
+    def tx_dpd_status_chan1(self):
+        if self.tx_dpd_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "dpd_status", True)
+        return
+    
+    # DPD track count
+    @property
+    def tx_dpd_track_count_chan0(self):
+        if self.tx_dpd_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "dpd_track_count", True)
+        return
+    
+    @property
+    def tx_dpd_track_count_chan1(self):
+        if self.tx_dpd_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "dpd_track_count", True)
+        return
+    
+    # VSWR tracking
+    @property
+    def tx_vswr_tracking_en_chan0(self):
+        return self._get_iio_attr("voltage0", "vswr_tracking_en", True)
+    
+    @tx_vswr_tracking_en_chan0.setter
+    def tx_vswr_tracking_en_chan0(self, value):
+        self._set_iio_attr("voltage0", "vswr_tracking_en", True, value)
+
+    @property
+    def tx_vswr_tracking_en_chan1(self):
+        return self._get_iio_attr("voltage1", "vswr_tracking_en", True)
+    
+    @tx_vswr_tracking_en_chan1.setter
+    def tx_vswr_tracking_en_chan1(self, value):
+        self._set_iio_attr("voltage1", "vswr_tracking_en", True, value)
+
+    # VSWR forward gain = rms??***
+    @property
+    def tx_vswr_forward_gain_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_forward_gain", True)
+        return
+    
+    @property
+    def tx_vswr_forward_gain_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_forward_gain", True)
+        return
+    
+    # VSWR forward gain imag
+    @property
+    def tx_vswr_forward_gain_imag_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_forward_gain_imag", True)
+        return
+    
+    @property
+    def tx_vswr_forward_gain_imag_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_forward_gain_imag", True)
+        return
+    
+    # VSWR forward gain real
+    @property
+    def tx_vswr_forward_gain_real_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_forward_gain_real", True)
+        return
+    
+    @property
+    def tx_vswr_forward_gain_real_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_forward_gain_real", True)
+        return
+    
+    # VSWR forward orx
+    @property
+    def tx_vswr_forward_orx_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_forward_orx", True)
+        return
+    
+    @property
+    def tx_vswr_forward_orx_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_forward_orx", True)
+        return
+    
+    # VSWR forward tx
+    @property
+    def tx_vswr_forward_tx_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_forward_tx", True)
+        return
+    
+    @property
+    def tx_vswr_forward_tx_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_forward_tx", True)
+        return
+    
+    # VSWR reflected gain = rms??***
+    @property
+    def tx_vswr_reflected_gain_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_reflected_gain", True)
+        return
+    
+    @property
+    def tx_vswr_reflected_gain_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_reflected_gain", True)
+        return
+    
+    # VSWR reflected gain imag
+    @property
+    def tx_vswr_reflected_gain_imag_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_reflected_gain_imag", True)
+        return
+    
+    @property
+    def tx_vswr_reflected_gain_imag_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_reflected_gain_imag", True)
+        return
+
+    # VSWR reflected gain real
+    @property
+    def tx_vswr_reflected_gain_real_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_reflected_gain_real", True)
+        return
+    
+    @property
+    def tx_vswr_reflected_gain_real_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_reflected_gain_real", True)
+        return
+    
+    # VSWR reflected orx
+    @property
+    def tx_vswr_reflected_orx_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_reflected_orx", True)
+        return
+    
+    @property
+    def tx_vswr_reflected_orx_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_reflected_orx", True)
+        return
+    
+    # VSWR reflected tx
+    @property
+    def tx_vswr_reflected_tx_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_reflected_tx", True)
+        return
+    
+    @property
+    def tx_vswr_reflected_tx_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_reflected_tx", True)
+        return
+    
+     # VSWR track count
+    @property
+    def tx_vswr_track_count_chan0(self):
+        if self.tx_vswr_tracking_en_chan0 == 1:
+            return self._get_iio_attr("voltage0", "vswr_track_count", True)
+        return
+    
+    @property
+    def tx_vswr_track_count_chan1(self):
+        if self.tx_vswr_tracking_en_chan1 == 1:
+            return self._get_iio_attr("voltage1", "vswr_track_count", True)
+        return
+    
+    ''' device-specific attributes'''
+    
